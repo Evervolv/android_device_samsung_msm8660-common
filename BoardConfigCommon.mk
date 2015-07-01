@@ -55,6 +55,13 @@ TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_DISPLAY_INSECURE_MM_HEAP := true
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
 
+# Dex-preoptimization
+ifeq ($(HOST_OS),linux)
+  ifeq ($(WITH_DEXPREOPT),)
+    WITH_DEXPREOPT := true
+  endif
+endif
+
 # Dlmalloc
 MALLOC_IMPL := dlmalloc
 
