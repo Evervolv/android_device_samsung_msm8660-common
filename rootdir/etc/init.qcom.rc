@@ -28,6 +28,10 @@
 import init.target.rc
 import init.qcom.usb.rc
 
+on early-init
+    mkdir /firmware 0771 system system
+    mkdir /firmware-mdm 0771 system system
+
 on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
@@ -61,7 +65,6 @@ on early-boot
     setrlimit 8 67108864 67108864
     setprop persist.sys.ssr.restart_level 3
     write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
-    exec /system/bin/sh /init.qcom.syspart_fixup.sh
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
