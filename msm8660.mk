@@ -209,3 +209,6 @@ PRODUCT_COPY_FILES += \
 
 # Common Qualcomm hardware
 $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.hwc.mdpcomp.enable=false
