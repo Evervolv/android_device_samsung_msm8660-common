@@ -24,7 +24,6 @@ LOCAL_PATH := $(call my-dir)
 
 ifeq ($(BOARD_VENDOR),samsung)
 ifeq ($(TARGET_BOARD_PLATFORM),msm8660)
-$(call project-set-path,qcom-gps,$(LOCAL_PATH))
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 endif
 endif

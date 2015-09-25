@@ -43,6 +43,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
 
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=/system/lib/libqc-opt.so
 
@@ -53,6 +56,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     lpa.decode=false \
+    qcom.hw.aac.encoder=true \
     camera2.portability.force_api=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -90,17 +94,19 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
+    audio_policy.conf \
+    audio_policy.msm8660 \
     audio.primary.msm8660 \
     libaudio-resampler \
     libaudioutils
 
-# Audio policy configuration
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
-
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8660
+
+# Chromecast
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.enable.chromecast.mirror=true
 
 # Display
 PRODUCT_PACKAGES += \
@@ -168,23 +174,19 @@ PRODUCT_PACKAGES += \
     libOmxAmrEnc \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
-    libstagefrighthw
+    libstagefrighthw \
+    qcmediaplayer
+
+PRODUCT_BOOT_JARS += \
+    qcmediaplayer
 
 # Power HAL
 PRODUCT_PACKAGES += \
     power.msm8660
 
-# QRNGD
-PRODUCT_PACKAGES += \
-    qrngd
-
 # Thermal configuration
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
-
-# Torch
-PRODUCT_PACKAGES += \
-    Torch
 
 # TWRP
 PRODUCT_PACKAGES += \
@@ -200,6 +202,8 @@ PRODUCT_PACKAGES += \
     macloader \
     dhcpcd.conf \
     hostapd \
+    hostapd_default.conf \
+    libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf
 
