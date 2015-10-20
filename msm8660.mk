@@ -100,6 +100,10 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     libaudioutils
 
+# BoringSSL compatability wrapper
+PRODUCT_PACKAGES += \
+    libboringssl-compat
+
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8660
