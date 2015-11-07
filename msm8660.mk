@@ -193,6 +193,10 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     power.msm8660
 
+# Stlport
+PRODUCT_PACKAGES += \
+    libstlport
+
 # Thermal configuration
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
