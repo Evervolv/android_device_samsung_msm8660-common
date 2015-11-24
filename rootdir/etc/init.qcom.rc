@@ -505,6 +505,7 @@ on post-fs-data
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p10 /dev/block/mmcblk0p11 /dev/block/mmcblk0p17
     class core
     user root
+    group system wakelock
 
 service qmiproxy /system/bin/qmiproxy
     class main
@@ -515,12 +516,12 @@ service qmiproxy /system/bin/qmiproxy
 service qmuxd /system/bin/qmuxd
     class core
     user radio
-    group radio audio bluetooth gps diag log wakelock
+    group radio audio bluetooth wakelock gps
 
 service netmgrd /system/bin/netmgrd
     class main
     user root
-    group radio system
+    group radio system wakelock
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
