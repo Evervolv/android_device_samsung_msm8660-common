@@ -20,7 +20,6 @@ TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm8660-common/include
 # Platform
 TARGET_BOARD_PLATFORM := msm8660
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
-TARGET_BUILD_VARIANT := userdebug
 
 # Architecture
 TARGET_CPU_VARIANT := scorpion
@@ -49,9 +48,6 @@ TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
 # Charger
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
-
-# CMHW
-BOARD_HARDWARE_CLASS += device/samsung/msm8660-common/cmhw
 
 # Display
 BOARD_USES_LEGACY_MMAP := true
