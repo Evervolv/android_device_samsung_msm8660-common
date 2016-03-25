@@ -20,8 +20,6 @@ TARGET_SPECIFIC_HEADER_PATH := device/samsung/msm8660-common/include
 # Platform
 TARGET_BOARD_PLATFORM := msm8660
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
-TARGET_BUILD_VARIANT := userdebug
-USE_CLANG_PLATFORM_BUILD := true
 
 # Architecture
 TARGET_CPU_VARIANT := scorpion
@@ -47,9 +45,6 @@ COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 # Charger
 BOARD_BATTERY_DEVICE_NAME := "battery"
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
-
-# CMHW
-BOARD_HARDWARE_CLASS += device/samsung/msm8660-common/cmhw
 
 # Dex-preoptimization
 ifeq ($(HOST_OS),linux)
