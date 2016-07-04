@@ -177,6 +177,8 @@ PRODUCT_COPY_FILES += \
 
 # NFC
 PRODUCT_PACKAGES += \
+    nfc.msm8660 \
+    libpn544_fw \
     libnfc \
     libnfc_jni \
     Nfc \
