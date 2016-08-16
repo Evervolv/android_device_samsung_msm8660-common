@@ -47,7 +47,6 @@ BOARD_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 TARGET_NEEDS_TEXT_RELOCATIONS := true
 
 # Charger
-BOARD_BATTERY_DEVICE_NAME := "battery"
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 
 # Display
