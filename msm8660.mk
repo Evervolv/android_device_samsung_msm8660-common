@@ -206,8 +206,8 @@ PRODUCT_PACKAGES += \
     libstagefrighthw
 
 # Power
-#PRODUCT_PACKAGES += \
-#    power.msm8660
+PRODUCT_PACKAGES += \
+    power.msm8660
 
 # Releasetools
 PRODUCT_COPY_FILES += \
