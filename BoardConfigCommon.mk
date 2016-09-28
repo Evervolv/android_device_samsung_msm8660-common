@@ -102,8 +102,8 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/samsung/msm8660-common/releasetools
 BOARD_RIL_CLASS := ../../../device/samsung/msm8660-common/ril
 
 # SELinux
-#include device/qcom/sepolicy/sepolicy.mk
-#BOARD_SEPOLICY_DIRS += device/samsung/msm8660-common/sepolicy
+include device/qcom/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_DIRS += device/samsung/msm8660-common/sepolicy
 
 # TWRP
 DEVICE_RESOLUTION := 480x800
