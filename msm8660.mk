@@ -131,7 +131,6 @@ PRODUCT_PACKAGES += \
 
 # Execmod wrapper
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/ks \
     $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/mpdecision \
     $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/netmgrd \
     $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/qcks \
