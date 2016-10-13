@@ -266,6 +266,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     sensors.MSM8660_SURF
 
+# Sensor HAL
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl
+
 # SPN override
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
