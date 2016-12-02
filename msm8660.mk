@@ -170,6 +170,10 @@ PRODUCT_PACKAGES += \
     fsck.f2fs \
     resize2fs_static
 
+#GNSS HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8660
