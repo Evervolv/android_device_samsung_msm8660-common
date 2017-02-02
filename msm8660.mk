@@ -111,6 +111,10 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     libaudioutils
 
+# Bluetooth HAL
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl
+
 # Browser
 PRODUCT_PACKAGES += \
     Gello
