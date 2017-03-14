@@ -153,12 +153,7 @@ PRODUCT_PACKAGES += \
 
 # Drm
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl \
-
-ifeq ($(ENABLE_TREBLE), true)
-PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-service
-endif
+    android.hardware.drm@1.0-impl
 
 # Execmod wrapper
 PRODUCT_COPY_FILES += \
