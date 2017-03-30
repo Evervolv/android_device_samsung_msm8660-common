@@ -218,6 +218,10 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libstagefrighthw
 
+# OMX properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.media.treble_omx=false
+
 # Power
 PRODUCT_PACKAGES += \
     power.msm8660
