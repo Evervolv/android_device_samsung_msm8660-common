@@ -140,6 +140,10 @@ PRODUCT_PACKAGES += \
     libgenlock \
     memtrack.msm8660
 
+PRODUCT_PACKAGES += \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.mapper@2.0-impl
+
 # Execmod wrapper
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/mpdecision \
@@ -245,6 +249,10 @@ PRODUCT_COPY_FILES += \
 # Stlport
 PRODUCT_PACKAGES += \
     libstlport
+
+# Vendor Interface Manifest
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
 
 # Wifi
 PRODUCT_PACKAGES += \
