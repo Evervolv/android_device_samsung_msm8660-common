@@ -18,7 +18,7 @@
 /dev/msm_hw3dc            0666   root       root
 
 # the DIAG device node is not world writable/readable.
-/dev/diag                 0660   system     qcom_diag
+/dev/diag                 0660   system     diag
 
 # the genlock client device node is world writable/readable.
 /dev/genlock              0666   root      root
