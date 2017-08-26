@@ -151,6 +151,15 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.1-impl \
     android.hardware.graphics.mapper@2.0-impl
 
+# Drm
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
+
+ifeq ($(ENABLE_TREBLE), true)
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-service
+endif
+
 # Execmod wrapper
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/bin/execmod-wrapper.sh:system/bin/mpdecision \
