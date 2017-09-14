@@ -117,6 +117,14 @@ static int sensors__get_sensors_list(struct sensors_module_t* module,
         return ARRAY_SIZE(sSensorList);
 }
 
+#if defined(SENSORS_DEVICE_API_VERSION_1_4)
+static int sensors__set_operation_mode(unsigned int mode)
+{
+    (void)mode;
+    return 0;
+}
+#endif
+
 static struct hw_module_methods_t sensors_module_methods = {
         .open = open_sensors
 };
@@ -132,16 +140,27 @@ struct sensors_module_t HAL_MODULE_INFO_SYM = {
              .methods = &sensors_module_methods,
         },
         .get_sensors_list = sensors__get_sensors_list,
+#if defined(SENSORS_DEVICE_API_VERSION_1_4)
+         set_operation_mode: sensors__set_operation_mode,
+#endif
 };
 
 struct sensors_poll_context_t {
-    struct sensors_poll_device_t device; // must be first
+    struct sensors_poll_device_1 device; // must be first
 
-        sensors_poll_context_t();
-        ~sensors_poll_context_t();
+    sensors_poll_context_t();
+    //for cppcheck "noCopyConstructor"
+    sensors_poll_context_t(const sensors_poll_context_t & other);
+    ~sensors_poll_context_t();
     int activate(int handle, int enabled);
     int setDelay(int handle, int64_t ns);
     int pollEvents(sensors_event_t* data, int count);
+    int batch(int handle, int flags, int64_t sampling_period_ns, int64_t max_report_latency_ns);
+    int flush(int handle);
+    int get_sensors_list(struct sensor_t const** list);
+#if defined(SENSORS_DEVICE_API_VERSION_1_4)
+    int inject_sensor_data(const sensors_event_t *data);
+#endif
 
 private:
     enum {
@@ -287,6 +306,27 @@ int sensors_poll_context_t::pollEvents(sensors_event_t* data, int count)
     return nbEvents;
 }
 
+int sensors_poll_context_t::batch(int handle, int flags, int64_t sampling_period_ns, int64_t max_report_latency_ns)
+{
+    int index = handleToDriver(handle);
+    if (index < 0) return index;
+    return mSensors[index]->batch(handle, flags, sampling_period_ns, max_report_latency_ns);
+}
+
+int sensors_poll_context_t::flush(int handle)
+{
+    int index = handleToDriver(handle);
+    if (index < 0) return index;
+    return mSensors[index]->flush(handle);
+}
+
+#if defined(SENSORS_DEVICE_API_VERSION_1_4)
+int sensors_poll_context_t::inject_sensor_data(const sensors_event_t *data)
+{
+    return 0;
+}
+#endif
+
 /*****************************************************************************/
 
 static int poll__close(struct hw_device_t *dev)
@@ -325,15 +365,20 @@ static int open_sensors(const struct hw_module_t* module, const char* id,
         int status = -EINVAL;
         sensors_poll_context_t *dev = new sensors_poll_context_t();
 
-        memset(&dev->device, 0, sizeof(sensors_poll_device_t));
+        memset(&dev->device, 0, sizeof(sensors_poll_device_1));
 
         dev->device.common.tag = HARDWARE_DEVICE_TAG;
-        dev->device.common.version  = SENSORS_DEVICE_API_VERSION_0_1;
+        dev->device.common.version  = SENSORS_DEVICE_API_VERSION_1_3;
         dev->device.common.module   = const_cast<hw_module_t*>(module);
         dev->device.common.close    = poll__close;
         dev->device.activate        = poll__activate;
         dev->device.setDelay        = poll__setDelay;
         dev->device.poll            = poll__poll;
+        dev->device.batch           = poll__batch;
+        dev->device.flush           = poll__flush;
+#if defined(SENSORS_DEVICE_API_VERSION_1_4)
+        dev->device.inject_sensor_data = poll__inject_sensor_data;
+#endif
 
         *device = &dev->device.common;
         status = 0;
