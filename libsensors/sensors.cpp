@@ -356,6 +356,27 @@ static int poll__poll(struct sensors_poll_device_t *dev,
     return ctx->pollEvents(data, count);
 }
 
+static int poll__batch(struct sensors_poll_device_1 *dev,
+        int handle, int flags, int64_t sampling_period_ns, int64_t max_report_latency_ns)
+{
+    sensors_poll_context_t *ctx = (sensors_poll_context_t *) dev;
+    return ctx->batch(handle, flags, sampling_period_ns, max_report_latency_ns);
+}
+
+static int poll__flush(struct sensors_poll_device_1 *dev, int sensor_handle)
+{
+    sensors_poll_context_t *ctx = (sensors_poll_context_t *) dev;
+    return ctx->flush(sensor_handle);
+}
+
+#if defined(SENSORS_DEVICE_API_VERSION_1_4)
+static int poll__inject_sensor_data(struct sensors_poll_device_1 *dev, const sensors_event_t *data)
+{
+    sensors_poll_context_t *ctx = (sensors_poll_context_t *) dev;
+    return ctx->inject_sensor_data(data);
+}
+#endif
+
 /*****************************************************************************/
 
 /** Open a new instance of a sensor device using name */
